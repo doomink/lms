@@ -329,6 +329,13 @@ if (!isset($_POST['xjxfun'])) {
                     }
                 }
             }
+			//custom: czas do podpisania umowy	
+			if($customerdata['umowakoniec'] != ''){
+				// list($y, $m, $d) = sscanf($customerdata['umowakoniec'], '/');
+				list($y, $m, $d) = explode('/', $customerdata['umowakoniec']);
+				// echo $y.$m.$d; die;
+				$customerdata['umowakoniec'] = mktime(0,0,0,$m,$d,$y);
+			}	
 
             if ($customerdata['regon'] != '') {
                 $regon_validation_result = check_regon($customerdata['regon']);
