@@ -610,6 +610,14 @@
 										</div>
 									</TD>
 								</TR>
+								<TR>
+									<TD>
+										Czas do podpisania umowy:
+									</TD>
+									<TD>							
+										<INPUT type="text" name="customerdata[umowakoniec]" id="umowakoniec" {if $customerinfo.umowakoniec}value="{$customerinfo.umowakoniec|date_format:'%Y/%m/%d'}"{/if} size="10" {tip class="calendar" text="Wybierz datę sprawdzenia czy umowa jest podpisana" trigger="umowakoniec"}>
+									</TD>
+								</TR>
 							</TABLE>
 						</TD>
 					</TR>
