@@ -783,6 +783,7 @@ class LMSCustomerManager extends LMSManager implements LMSCustomerManagerInterfa
             'ten'            => $customeradd['ten'],
             'ssn'            => $customeradd['ssn'] ?? '',
             'status'         => $customeradd['status'],
+           'umowakoniec'     => $customeradd['umowakoniec'],
             SYSLOG::RES_USER => Auth::GetCurrentUser(),
             'info'           => Utils::removeInsecureHtml($customeradd['info']),
             'notes'          => Utils::removeInsecureHtml($customeradd['notes']),
@@ -828,10 +829,10 @@ class LMSCustomerManager extends LMSManager implements LMSCustomerManagerInterfa
 
         $result = $this->db->Execute(
             'INSERT INTO customers (name, lastname, altname, type,
-            ten, ssn, status, creationdate,
+            ten, ssn, status, umowakoniec, creationdate,
             creatorid, info, notes, message, documentmemo, pin, pinlastchange, regon, rbename, rbe,
             ict, icn, icexpires, cutoffstop, divisionid, paytime, paytype, flags, origin' . ($reuse_customer_id ? ', id' : ''). ')
-            VALUES (?, ' . ($capitalize_customer_names ? 'UPPER(?)' : '?') . ', ?, ?, ?, ?, ?, ?NOW?,
+            VALUES (?, ' . ($capitalize_customer_names ? 'UPPER(?)' : '?') . ', ?, ?, ?, ?, ?, ?, ?NOW?,
                     ?, ?, ?, ?, ?, ?, ?NOW?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?' . ($reuse_customer_id ? ', ?' : '') . ')',
             array_values($args)
         );
@@ -2577,6 +2578,7 @@ class LMSCustomerManager extends LMSManager implements LMSCustomerManagerInterfa
         $args = array(
             'status'         => $customerdata['status'],
             'type'           => empty($customerdata['type']) ? 0 : 1,
+            'umowakoniec'     => $customerdata['umowakoniec'],
             'ten'            => $customerdata['ten'],
             'ssn'            => $customerdata['ssn'] ?? $customer['ssn'],
             SYSLOG::RES_USER => Auth::GetCurrentUser(),
@@ -2641,7 +2643,7 @@ class LMSCustomerManager extends LMSManager implements LMSCustomerManagerInterfa
 
         // UPDATE CUSTOMER FIELDS
         $res = $this->db->Execute(
-            'UPDATE customers SET status = ?, type = ?, ten = ?, ssn = ?, moddate = ?NOW?, modid = ?,
+            'UPDATE customers SET status = ?, type = ?, umowakoniec = ?, ten = ?, ssn = ?, moddate = ?NOW?, modid = ?,
             info = ?, notes = ?, lastname=' . ($capitalize_customer_names ? 'UPPER(?)' : '?') . ', name = ?, altname = ?,
             deleted = 0, message = ?, documentmemo = ?, pin = ?, pinlastchange = ?, regon = ?, ict = ?, icn = ?, icexpires = ?,
             rbename = ?, rbe = ?, cutoffstop = ?, divisionid = ?, paytime = ?, paytype = ?, flags = ?, origin = ?
