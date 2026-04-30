@@ -861,6 +861,7 @@ class LMSFinanceManager extends LMSManager implements LMSFinanceManagerInterface
                                     'docid' => empty($data['docid']) ? null : $data['docid'],
                                     'promotionschemaid' => $data['schemaid'],
                                     'commited' => $commited,
+									'grupa_firma'        => !empty($data['grupa_firma']) ? $data['grupa_firma'] : 0,
                                 );
 
                                 $result[] = $data['assignmentid'] = $this->insertAssignment($args);
@@ -973,6 +974,7 @@ class LMSFinanceManager extends LMSManager implements LMSFinanceManagerInterface
                                 'docid' => empty($data['docid']) ? null : $data['docid'],
                                 'promotionschemaid' => $data['schemaid'],
                                 'commited' => $commited,
+								'grupa_firma' => !empty($data['grupa_firma']) ? $data['grupa_firma'] : 0,
                             );
 
                             $result[] = $data['assignmentid'] = $this->insertAssignment($args);
@@ -1028,6 +1030,7 @@ class LMSFinanceManager extends LMSManager implements LMSFinanceManagerInterface
                         'docid' => empty($data['docid']) ? null : $data['docid'],
                         'promotionschemaid' => $data['schemaid'],
                         'commited' => $commited,
+						'grupa_firma' => !empty($data['grupa_firma']) ? $data['grupa_firma'] : 0,
                     );
 
                     $result[] = $data['assignmentid'] = $this->insertAssignment($args);
@@ -1159,6 +1162,7 @@ class LMSFinanceManager extends LMSManager implements LMSFinanceManagerInterface
                         'docid'             => empty($data['docid']) ? null : $data['docid'],
                         'promotionschemaid' => null,
                         'commited'          => $commited,
+						'grupa_firma' => !empty($data['grupa_firma']) ? $data['grupa_firma'] : 0,
                     );
 
                     $result[] = $data['assignmentid'] = $this->insertAssignment($args);
@@ -1241,6 +1245,7 @@ class LMSFinanceManager extends LMSManager implements LMSFinanceManagerInterface
                         'docid'             => empty($data['docid']) ? null : $data['docid'],
                         'promotionschemaid' => null,
                         'commited'          => $commited,
+						'grupa_firma' => !empty($data['grupa_firma']) ? $data['grupa_firma'] : 0,
                     );
 
                     $result[] = $data['assignmentid'] = $this->insertAssignment($args);
@@ -1307,6 +1312,7 @@ class LMSFinanceManager extends LMSManager implements LMSFinanceManagerInterface
                     'docid' => empty($data['docid']) ? null : $data['docid'],
                     'promotionschemaid' => null,
                     'commited' => $commited,
+						'grupa_firma' => !empty($data['grupa_firma']) ? $data['grupa_firma'] : 0,
                 );
 
                 $result[] = $data['assignmentid'] = $this->insertAssignment($args);
@@ -1375,8 +1381,8 @@ class LMSFinanceManager extends LMSManager implements LMSFinanceManagerInterface
                 settlement, numberplanid,
                 paytime, paytype, datefrom, dateto, pdiscount, vdiscount, attribute, note,
                 suspended, liabilityid, recipient_address_id,
-                docid, promotionschemaid, commited)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                docid, promotionschemaid, commited, grupa_firma)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
             array_values($args)
         );
 

@@ -936,6 +936,28 @@
 									</select>
 								</td>
 							</tr>
+							
+							
+							
+										<tr id="grupa_firma">
+											<td>
+												<img src="img/info3.gif" alt="">
+											</td>
+											<td class="bold">
+												<span class="bold">Grupa firma:</span>
+											</td>
+											<td>
+									
+												<select name="assignment[grupa_firma]">
+													<option value="0">BRAK</option>
+													<option value="1" {if $assignment.grupa_firma == 1} selected{/if}>rozliczenie 1</option>
+													<option value="2" {if $assignment.grupa_firma == 2} selected{/if}>rozliczenie 2</option>
+												</select>
+											</td>
+										</tr>
+							
+							
+
 
 							{/block}
 							</TBODY>

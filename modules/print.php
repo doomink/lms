@@ -36,6 +36,37 @@ if (empty($report_type)) {
 $type = $_GET['type'] ?? '';
 
 switch ($type) {
+	case 'financesgrupa':
+		
+		$division = intval($_POST['division']);
+		$group = intval($_POST['group']);
+		
+		list($year, $month, $day) = explode('/', $_POST['balancefrom']);
+		$from = mktime(0,0,0, $month, $day, $year);
+		list($year, $month, $day) = explode('/', $_POST['balanceto']);
+		$to = mktime(0,0,0, $month, $day, $year);
+		$grupa_firma=(!empty($group) ? ' AND grupa_firma='.$group : '');
+		
+		$assignments = $DB->GetAll("SELECT a.*, concat(c.lastname,' ',c.name) customername, t.value, n.name nodename, c.id as cid
+							from assignments a 
+							LEFT JOIN tariffs t on t.id=a.tariffid
+							LEFT JOIN customers c on c.id=a.customerid
+							LEFT JOIN nodeassignments na on na.assignmentid=a.id
+							LEFT JOIN nodes n on na.nodeid=n.id
+							where 1=1
+							AND a.at<=28
+							".$grupa_firma."
+							AND (a.datefrom<=? OR a.datefrom=0) AND (a.dateto>=? OR a.dateto=0)
+							", array($from, $to));
+		// echo "<pre>";
+		// print_r($DB);
+		// print_r($assignments);
+		// die;
+		$SMARTY->assign('post', $_POST);
+		$SMARTY->assign('assignments', $assignments);
+		$SMARTY->display('print/printfinancesgrupa.html');
+		
+	break;
     case 'customerbalance':
         /********************************************/
 

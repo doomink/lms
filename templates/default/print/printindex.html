@@ -302,6 +302,95 @@
 </TABLE>
 </form>
 {/if}
+
+<!-- ////////////////////////////////////////////////////////////////// -->
+
+{*if $printmenu2=="financesgrupa"*}
+{if 1==1}
+<FORM method="post" name="printfinancesgrupa" id="printfinancesgrupa" action="?m=print&type=financesgrupa">
+<INPUT type="submit" class="hiddenbtn">
+<TABLE class="lmsbox">
+    <COLGROUP>
+        <COL style="width: 1%;">
+        <COL style="width: 99%;">
+    </COLGROUP>
+    <THEAD>
+	<TR>
+		<TH scope="col">
+		    <IMG src="img/money.gif" alt="">
+		</TH>
+		<TH  scope="col" class="bold nobr">
+		    Raport finansowy zobowiązań do rozliczenia:
+		</TH>
+	</TR>
+    </THEAD>
+    <TBODY>
+	<TR>
+		<TD class="container" width="100%" colspan="2">
+			<TABLE width="100%">
+				<TR>
+					<TD style="width: 1%;" class="nobr">
+					    <TABLE cellpadding="3">
+						<TR>
+						    <TD style="width: 1%;">
+							<IMG src="img/division.gif" alt="">
+						    </TD>
+						    <TD style="width: 1%;" class="bold nobr">
+							{trans("Division")}:
+						    </TD>
+						    <TD style="width: 98%;" class="nobr">
+							<SELECT size="1" name="division" {tip text="Select division"}>
+							    <OPTION value="0">- {trans("all")} -</OPTION>
+                    					    {foreach from=$divisions item=item}
+			                            	    <OPTION value="{$item.id}">{$item.shortname}</OPTION>
+							    {/foreach}
+							</SELECT>
+						    </TD>
+						</TR>
+					    </TABLE>
+					</TD>
+					<TD style="width: 1%;" class="nobr">
+					    <TABLE>
+						<TR>
+						    <TD style="width: 1%;">
+							<IMG src="img/money.gif" alt="">
+						    </TD>
+						    <TD style="width: 1%;" class="bold nobr">
+							Grupa zobowiązań do rozliczenia:
+						    </TD>
+							<TD style="width: 98%;">
+								<SELECT name="group" >
+									<option value="0">BRAK</option>
+									<option value="1" >rozliczenie 1</option>
+									<option value="2" >rozliczenie 2</option>
+								</SELECT>
+							</TD>
+						</TR>
+					    </TABLE>
+					</TD>
+					<TD style="width: 1%;">
+						<IMG src="img/calendar.gif" alt="">
+					</TD>
+					<TD style="width: 95%;" class="nobr">
+						<span class="bold nobr">{trans("Period:")}</span>
+						{trans("From")}&nbsp;<INPUT type="text" name="balancefrom" SIZE="10" maxlength="10" placeholder="{trans("yyyy/mm/dd")}" {tip class="calendar" text="Enter date in 'yyyy/mm/dd' format or click to choose it from calendar"}>
+						{trans("To")}&nbsp;<INPUT type="text" name="balanceto" SIZE="10" maxlength="10" placeholder="{trans("yyyy/mm/dd")}" {tip class="calendar" text="Enter date in 'yyyy/mm/dd' format (empty field means current date) or click to choose it from calendar"}>
+					</TD>
+				</TR>
+			</TABLE>
+		</TD>
+	</TR>
+	<TR>
+		<TD style="width: 100%;" colspan="2" align="right">
+			<A href="javascript:document.printfinancesgrupa.target='_blank';document.printfinancesgrupa.submit();">{trans("Print")} <IMG src="img/print.gif" alt=""></A>
+		</TD>
+	</TR>
+    </TBODY>
+</TABLE>
+</FORM>
+{/if}
+<!-- ////////////////////////////////////////////////////////////////// -->
+
 {if $printmenu=="finances"}
 <form method="post" name="printbalancelist" id="printbalancelist" action="?m=print&type=balancelist" target="_blank">
 	<input type="hidden" name="disposition" value="print">

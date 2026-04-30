@@ -436,13 +436,14 @@ if (isset($_POST['assignment'])) {
             'paytime' => $paytime ?? null,
             'paytype' => !empty($a['paytype']) ? $a['paytype'] : null,
             'recipient_address_id' => ($a['recipient_address_id'] > 0) ? $a['recipient_address_id'] : null,
+			'grupa_firma' => isset($a['grupa_firma']) ? $a['grupa_firma'] : 0,
             SYSLOG::RES_ASSIGN => $a['id']
         );
 
         $DB->Execute('UPDATE assignments SET tariffid=?, customerid=?, attribute=?, note = ?, suspended = ?, period=?,
             backwardperiod=?, at=?, count=?,
 			invoice=?, separatedocument=?, separateitem = ?, settlement=?, datefrom=?, dateto=?, pdiscount=?, vdiscount=?,
-			liabilityid=?, numberplanid=?, paytime = ?, paytype=?, recipient_address_id=?
+			liabilityid=?, numberplanid=?, paytime = ?, paytype=?, recipient_address_id=?, grupa_firma=?
 			WHERE id=?', array_values($args));
         if ($SYSLOG) {
             $SYSLOG->AddMessage(SYSLOG::RES_ASSIGN, SYSLOG::OPER_UPDATE, $args);
@@ -510,7 +511,7 @@ if (isset($_POST['assignment'])) {
 } else {
     $a = $DB->GetRow(
         'SELECT a.id AS id, a.customerid, a.tariffid, a.period, a.backwardperiod,
-        a.at, a.count, a.datefrom, a.dateto, a.numberplanid, a.paytime, a.paytype,
+        a.at, a.count, a.datefrom, a.dateto, a.numberplanid, a.paytime, a.paytype, a.grupa_firma,
         a.invoice,
         a.separatedocument, a.separateitem,
         a.note,
