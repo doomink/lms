@@ -784,7 +784,7 @@ class LMSTcpdfInvoice extends LMSInvoice
             } else {
                 $comment = '';
             }
-
+/*
             if ($this->use_alert_color) {
                 $this->backend->SetTextColorArray(array(255, 0, 0));
             }
@@ -804,10 +804,14 @@ class LMSTcpdfInvoice extends LMSInvoice
                 true,
                 'L'
             );
+*/ 
             if ($this->use_alert_color) {
                 $this->backend->SetTextColor();
             }
-            $this->backend->writeHTMLCell(0, 0, '', '', trans('Balance includes current invoice'), 0, 1, 0, true, 'L');
+            //$this->backend->writeHTMLCell(0, 0, '', '', trans('Balance includes current invoice'), 0, 1, 0, true, 'L');
+			$aa = Utils::formatMoney($this->data['customerbalance']+$this->data['value']);
+			// echo $previous_balance." = ".$this->data['currencyvalue'].=" ---- ".$aa; die;
+            $this->backend->writeHTMLCell(0, 0, '', '', trans('Saldo przed wystawieniem faktury: '.$aa.' '), 0, 1, 0, true, 'L');						 
         }
 
         if ($show_balance_summary) {
@@ -850,7 +854,7 @@ class LMSTcpdfInvoice extends LMSInvoice
         } else {
             $comment = trans('gross');
         }
-        $this->backend->writeHTMLCell(0, 0, '', '', trans('The document is issued according to the $a price', $comment), 0, 1, 0, true, 'L');
+        //$this->backend->writeHTMLCell(0, 0, '', '', trans('The document is issued according to the $a price', $comment), 0, 1, 0, true, 'L');
     }
 
     protected function invoice_dates()
