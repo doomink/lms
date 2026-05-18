@@ -124,7 +124,7 @@ if (!empty($_POST['division'])) {
     if (!is_array($_POST['division'])) {
         $divisions = array($_POST['division']);
     }
-    $divisions = Utils::filterIntegers($_POST['division']);
+    $divisions = Utils::filterIntegers(array($_POST['division']));
     if (!empty($divisions)) {
         $divisionWhere = ' AND d.divisionid ' . (isset($_POST['divexclude']) ? 'NOT IN' : 'IN') . ' (' . implode(',', $divisions) . ')';
 
